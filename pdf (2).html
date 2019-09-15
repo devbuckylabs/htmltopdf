@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<style>
+
+.divTable
+	{display:table;
+	width:50%}
+.divTableRow
+	{display:table-row}
+.divTableHeading
+	{background-color:#EEE;
+	display:table-header-group}
+.divTableCell, .divTableHead
+	{border:0px solid #999999;
+	display:table-cell;
+	padding:3px 10px}
+.divTableHeading
+	{background-color:#EEE;
+	display:table-header-group;
+	font-weight:bold}
+.divTableFoot
+	{background-color:#EEE;
+	display:table-footer-group;
+	font-weight:bold}
+.divTableBody
+	{display:table-row-group}
+
+</style>
+</head>
+<body>
+<div id="dvContainer">
+<div id ="TableID" class="divTable">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;Sno</div>
+<div class="divTableCell">&nbsp;Name</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;1</div>
+<div class="divTableCell">Krishna&nbsp;</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;ravi</div>
+</div>
+</div>
+</div>
+</div>
+<div><input type="button" value="Print Div Contents" id="btnPrint"></div>
+
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btnPrint", function () {
+            html2canvas($('#TableID')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
